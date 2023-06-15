@@ -12,4 +12,5 @@ const config: Options = {
   },
   logging: false,
 }
+
 export = config;
