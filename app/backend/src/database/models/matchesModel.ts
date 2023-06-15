@@ -1,7 +1,6 @@
 import {
   Model,
-  INTEGER,
-  BOOLEAN,
+  DataTypes,
   CreationOptional,
 } from 'sequelize';
 import db from '.';
@@ -23,30 +22,30 @@ MatchesModel.init({
     allowNull: false,
     autoIncrement: true,
     primaryKey: true,
-    type: INTEGER,
+    type: DataTypes.INTEGER,
   },
   homeTeamId: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     field: 'home_team_id',
   },
   homeTeamGoals: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     field: 'home_team_goals',
   },
   awayTeamId: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     field: 'away_team_id',
   },
   awayTeamGoals: {
-    type: INTEGER,
+    type: DataTypes.INTEGER,
     allowNull: false,
     field: 'away_team_goals',
   },
   inProgress: {
-    type: BOOLEAN,
+    type: DataTypes.BOOLEAN,
     allowNull: false,
     field: 'in_progress',
   },
