@@ -15,6 +15,7 @@ class App {
 
   private routes() {
     this.app.use('/teams', teamsRouter);
+    this.app.use('/teams:id', teamsRouter);
   }
 
   private config():void {

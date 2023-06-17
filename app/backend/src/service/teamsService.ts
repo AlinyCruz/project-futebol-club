@@ -5,6 +5,11 @@ class TeamsService {
     const list = await TeamsModel.findAll();
     return list;
   }
+
+  public static async getTeamsId(id: number): Promise<unknown> {
+    const listId = await TeamsModel.findOne({ where: { id } });
+    return listId;
+  }
 }
 
 export default TeamsService;
