@@ -8,10 +8,10 @@ class MatchesService {
   public async getMatches() {
     const M = await this.matches.findAll({ include: [
       { model: this.teams,
-        as: 'homeTeam',
+        // as: 'homeTeam',
         attributes: ['teamName'] },
       { model: this.teams,
-        as: 'awayTeam',
+        // as: 'awayTeam',
         attributes: ['teamName'] },
     ] });
     // const M = await this.matches.findAll();
