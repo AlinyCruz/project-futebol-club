@@ -3,10 +3,11 @@ import  {
   DataTypes,
   QueryInterface
 } from 'sequelize';
+import { IMatches } from '../../Interfaces/IMatches';
 
 export default {
   up: (queryInterface: QueryInterface) => {
-    return queryInterface.createTable<Model>('matches', {
+    return queryInterface.createTable<Model<IMatches>>('matches', {
       id: {
         allowNull: false,
         autoIncrement: true,

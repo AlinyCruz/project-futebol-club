@@ -5,10 +5,9 @@ export interface IMatches {
   awayTeamId: number;
   awayTeamGoals: number;
   inProgress: boolean;
-  homeTeam?: Team;
-  awayTeam?: Team;
 }
 
 export interface Team {
+  id: number;
   teamName: string;
 }
