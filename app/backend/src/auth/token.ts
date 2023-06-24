@@ -6,6 +6,8 @@ const secretKey = 'jwt_secret';
 
 const newToken = (payload: IToken) => {
   const generateToken = jwt.sign(payload, secretKey);
+  console.log(generateToken, 'geratoken');
+
   return generateToken;
 };
 

@@ -9,10 +9,13 @@ class UsersService {
         email,
       },
     });
+    console.log(user, 'mock user');
+
     if (!user) {
       return 'error';
     }
     const password2 = bcrypt.compareSync(password, user.password);
+    console.log(password2, 'mock bcrypt');
 
     if (!password2) {
       return 'error';

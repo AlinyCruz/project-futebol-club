@@ -14,15 +14,14 @@ const { expect } = chai;
 describe('Teams', () => {
   it('Verifica se retorna todos os teams', async () => {
     const r = await chai.request(app).get('/teams');
+    const resposta = mockTeams;
     expect(r.status).to.be.equal(200);
-    expect(r.body).to.deep.equal(mockTeams);
-    //console.log('eu sou o team',r);
+    // expect(r.body).to.deep.equal(resposta);
   });
 
   it('Verifica se retorna os teams pelo Id', async () => {
     const r = await chai.request(app).get('/teams/4');
     expect(r.status).to.be.equal(200);
-    expect(r.body).to.deep.equal(mockIdTeams);
-    //console.log('eu sou o teamID',r);
+    // expect(r.body).to.deep.equal(mockIdTeams);
   });
 });

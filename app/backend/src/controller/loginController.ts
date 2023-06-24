@@ -7,6 +7,7 @@ class LoginController {
     const { email, password } = request.body;
 
     const user = await UsersService.login(email, password);
+    console.log(user, 'controller User');
 
     if (user === 'error') {
       return response.status(401).json({ message: 'Invalid email or password' });
