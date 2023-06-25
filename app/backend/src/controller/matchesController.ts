@@ -42,6 +42,12 @@ class MatchesController {
     );
     return res.status(200).json({ message: 'Ok' });
   }
+
+  public async postMatches(req: Request, res: Response): Promise<Response> {
+    const r = req.body;
+    const r2 = await this.matchesService.postMatches(r);
+    return res.status(201).json(r2);
+  }
 }
 
 export default MatchesController;

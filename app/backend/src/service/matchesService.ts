@@ -1,9 +1,8 @@
-import TeamsModel from '../database/models/teamsModel';
+import { IMatches } from '../Interfaces/IMatches';
 import MatchesModel from '../database/models/matchesModel';
 
 class MatchesService {
   private matches = MatchesModel;
-  private teams = TeamsModel;
 
   public async getMatches() {
     const M = await this.matches.findAll();
@@ -46,6 +45,18 @@ class MatchesService {
       },
     );
     return { message: 'Ok' };
+  }
+
+  public async postMatches(param: IMatches) {
+    const affectedRows = await this.matches.create({
+      homeTeamId: param.homeTeamId,
+      homeTeamGoals: param.homeTeamGoals,
+      awayTeamId: param.awayTeamId,
+      awayTeamGoals: param.awayTeamGoals,
+      inProgress: true,
+    });
+
+    return affectedRows.dataValues;
   }
 }
 
