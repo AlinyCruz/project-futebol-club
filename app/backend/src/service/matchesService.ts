@@ -14,6 +14,17 @@ class MatchesService {
     return R;
   }
 
+  public async getMatchesInProgress(param: boolean) {
+    const M = await this.matches.findAll({
+      where: { inProgress: param },
+    });
+
+    const R = M.map((team) => ({
+      ...team.dataValues,
+    }));
+    return R;
+  }
+
   public async upMatches(matchId: number) {
     await this.matches.update(
       { inProgress: false },

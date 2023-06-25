@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import MatchesService from '../service/matchesService';
 import TeamsService from '../service/teamsService';
+import { IMatches } from '../Interfaces/IMatches';
 
 class MatchesController {
   constructor(
@@ -8,7 +9,15 @@ class MatchesController {
   ) {}
 
   public async getMatches(req: Request, res: Response): Promise<Response> {
-    const listMatches = await this.matchesService.getMatches();
+    const { inProgress } = req.query;
+    let listMatches = [] as IMatches[];
+    if (inProgress) {
+      const progress = inProgress === 'true';
+      listMatches = await this.matchesService.getMatchesInProgress(progress);
+    }
+    if (!inProgress) {
+      listMatches = await this.matchesService.getMatches();
+    }
     const listTeams = await TeamsService.getTeams();
 
     const R = listMatches.map((team) => ({
