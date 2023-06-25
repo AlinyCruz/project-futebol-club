@@ -45,6 +45,12 @@ class MatchesController {
 
   public async postMatches(req: Request, res: Response): Promise<Response> {
     const r = req.body;
+    const teams = await TeamsService.getTeams();
+    const validHome = !teams.find((t) => t.id === r.homeTeamId);
+    const validAway = !teams.find((t) => t.id === r.awayTeamId);
+    if (validHome || validAway) {
+      return res.status(404).json({ message: 'There is no team with such id!' });
+    }
     const r2 = await this.matchesService.postMatches(r);
     return res.status(201).json(r2);
   }
