@@ -1,7 +1,8 @@
+import { Team } from '../Interfaces/IMatches';
 import TeamsModel from '../database/models/teamsModel';
 
 class TeamsService {
-  public static async getTeams(): Promise<unknown> {
+  public static async getTeams(): Promise<Team[]> {
     const list = await TeamsModel.findAll();
     return list;
   }

@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import MatchesService from '../service/matchesService';
+import TeamsService from '../service/teamsService';
 
 class MatchesController {
   constructor(
@@ -8,7 +9,15 @@ class MatchesController {
 
   public async getMatches(req: Request, res: Response): Promise<Response> {
     const listMatches = await this.matchesService.getMatches();
-    return res.status(200).json(listMatches);
+    const listTeams = await TeamsService.getTeams();
+
+    const R = listMatches.map((team) => ({
+      ...team,
+      homeTeam: { teamName: listTeams.find((t) => t.id === team.homeTeamId)?.teamName },
+      awayTeam: { teamName: listTeams.find((t) => t.id === team.awayTeamId)?.teamName },
+    }));
+
+    return res.status(200).json(R);
   }
 
   public async upMatches(req: Request, res: Response): Promise<Response> {

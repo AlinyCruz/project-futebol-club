@@ -6,16 +6,12 @@ class MatchesService {
   private teams = TeamsModel;
 
   public async getMatches() {
-    const M = await this.matches.findAll({ include: [
-      { model: this.teams,
-        // as: 'homeTeam',
-        attributes: ['teamName'] },
-      { model: this.teams,
-        // as: 'awayTeam',
-        attributes: ['teamName'] },
-    ] });
-    // const M = await this.matches.findAll();
-    return M;
+    const M = await this.matches.findAll();
+
+    const R = M.map((team) => ({
+      ...team.dataValues,
+    }));
+    return R;
   }
 
   public async upMatches(matchId: number) {
